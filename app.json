@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "scheme": "myapp",
+    "plugins": [
+      "expo-router"
+    ],
+    "name": "treat",
+    "slug": "treat"
+  }
+}
