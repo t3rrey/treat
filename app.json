@@ -15,7 +15,10 @@
     "icon": "./assets/images/icon.png",
     "ios": {
       "icon": "./assets/images/ios/icon-1024.png",
-      "bundleIdentifier": "com.treat.app"
+      "bundleIdentifier": "com.treatranked.app",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "icon": "./assets/images/icon.png",
@@ -23,7 +26,17 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#8A3DFF"
       },
-      "package": "com.treat.app"
+      "package": "com.treat.app",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "dfdeaa9e-e4c2-4303-b70b-72edbad26155"
+      }
     }
   }
 }
