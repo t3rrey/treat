@@ -8,6 +8,8 @@
  * @module
  */
 
+import type * as places from "../places.js";
+import type * as reviews from "../reviews.js";
 import type * as types from "../types.js";
 
 import type {
@@ -17,6 +19,8 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  places: typeof places;
+  reviews: typeof reviews;
   types: typeof types;
 }>;
 

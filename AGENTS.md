@@ -1,33 +1,59 @@
-# Repository Guidelines
+# Treat Repository Guidelines
+
+## Product Overview
+
+- Treat is a mobile app for tracking restaurants and coffee spots, rating visits,
+  and browsing places in list or map views.
 
 ## Project Structure & Module Organization
-- `app/` contains Expo Router screens and layouts; route groups live under `app/(tabs)` (e.g., `app/(tabs)/coffee.tsx`, `app/(tabs)/rate-food/step-1.tsx`).
-- `lib/` holds shared UI and utilities: `lib/components/` (feature subfolders), `lib/consts/`, and shared types in `lib/types.ts`.
-- `convex/` contains backend schema/types and generated Convex bindings.
-- `sampleData.jsonl` is seed data used with Convex imports.
+
+- `app/` contains Expo Router screens and layouts.
+  - `app/(tabs)/index.tsx` is the Home list/map view and add-place entry point.
+  - `app/(tabs)/coffee.tsx` lists coffee spots with rating/distance sorting.
+  - `app/(tabs)/rate-food/index.tsx` is the multi-step rating flow.
+- `lib/components/` holds shared UI (cards, bottom sheets, map view).
+- `lib/consts/theme.ts` defines shared colors and spacing; reuse these in UI.
+- `lib/types.ts` contains shared types like `PlaceWithRating`.
+- `convex/` contains the schema and queries (`convex/schema.ts`,
+  `convex/places.ts`).
+- `sampleData.jsonl` is legacy template seed data; update it before using for
+  `places` imports.
+
+## Data Model Notes
+
+- `places` categories are `restaurant`, `cafe`, `coffee_shop`, `both`, `other`.
+- `reviews` ratings are 1-10; `coffeeRating` is optional for coffee/both.
+- Average ratings are computed in `convex/places.ts`; keep `PlaceWithRating`
+  consistent with those shapes.
 
 ## Build, Test, and Development Commands
-- `pnpm install` installs dependencies.
-- `npx convex dev` provisions a Convex dev deployment, creates `.env.local`, and syncs functions.
-- `pnpm start` runs the Expo dev server.
-- `pnpm android`, `pnpm ios`, `pnpm web` open platform-specific targets.
-- `pnpm lint` runs ESLint (Expo config).
-- `npx convex import --table products sampleData.jsonl` seeds local data.
-- `pnpm run reset-project` resets the starter template (use with care).
 
-## Coding Style & Naming Conventions
-- TypeScript/TSX with 2-space indentation and double quotes; follow existing file formatting.
-- File names use kebab-case (`restaurant-card.tsx`) and Expo Router naming (`_layout.tsx`, `index.tsx`).
-- Keep shared UI in `lib/components/` and route-specific logic in `app/`.
+- `pnpm install` installs dependencies.
+- `npx convex dev` provisions a Convex dev deployment and creates `.env.local`.
+- `pnpm start` runs the Expo dev server.
+- `pnpm android`, `pnpm ios`, `pnpm web` open platform targets.
+- `pnpm lint` runs ESLint (Expo config).
+
+## Coding Style & UI Conventions
+
+- TypeScript/TSX with 2-space indentation and double quotes.
+- Use `@/` path aliases for project imports.
+- Keep the bold, high-contrast UI style: thick borders, hard shadows, and theme
+  colors from `lib/consts/theme.ts`.
+- Handle location permissions and loading states when using `expo-location` or
+  map views.
 
 ## Testing Guidelines
-- No test framework or coverage targets are configured yet, and there is no `pnpm test` script.
-- If you add tests, prefer `__tests__/` or `*.test.tsx` naming and document the runner in this file.
+
+- No test runner configured yet. If you add tests, use `__tests__/` or
+  `*.test.tsx` and document the runner here.
 
 ## Commit & Pull Request Guidelines
-- No established commit history yet; use concise, imperative subjects (e.g., `Add coffee rating screen`).
-- PRs should include a clear summary, manual test steps, and screenshots for UI changes; link related issues when applicable.
+
+- Use concise, imperative commit subjects (e.g., `Add coffee sort toggle`).
+- PRs should include a summary, manual test steps, and screenshots for UI
+  changes.
 
 ## Configuration & Environment
-- `.env.local` is created by `npx convex dev` and should contain `EXPO_PUBLIC_CONVEX_URL`.
-- Treat local env files as developer-specific; avoid committing secrets.
+
+- `.env.local` is developer-specific and should not be committed.

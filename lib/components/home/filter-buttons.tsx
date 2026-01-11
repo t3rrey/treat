@@ -1,12 +1,18 @@
 import { colors, spacing } from "@/lib/consts/theme";
-import React, { useState } from "react";
+import React from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export const FilterButtons: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<"rated" | "unrated">(
-    "rated"
-  );
+export type FilterType = "rated" | "unrated";
 
+interface FilterButtonsProps {
+  activeFilter: FilterType;
+  onFilterChange: (filter: FilterType) => void;
+}
+
+export const FilterButtons: React.FC<FilterButtonsProps> = ({
+  activeFilter,
+  onFilterChange,
+}) => {
   return (
     <ScrollView
       horizontal
@@ -16,7 +22,7 @@ export const FilterButtons: React.FC = () => {
     >
       <TouchableOpacity
         style={[styles.button, activeFilter === "rated" && styles.buttonActive]}
-        onPress={() => setActiveFilter("rated")}
+        onPress={() => onFilterChange("rated")}
       >
         <Text
           style={[
@@ -33,7 +39,7 @@ export const FilterButtons: React.FC = () => {
           styles.button,
           activeFilter === "unrated" && styles.buttonActive,
         ]}
-        onPress={() => setActiveFilter("unrated")}
+        onPress={() => onFilterChange("unrated")}
       >
         <Text
           style={[

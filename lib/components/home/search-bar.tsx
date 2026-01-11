@@ -3,7 +3,15 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
-export const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  value: string;
+  onChangeText: (text: string) => void;
+}
+
+export const SearchBar: React.FC<SearchBarProps> = ({
+  value,
+  onChangeText,
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchBox}>
@@ -17,6 +25,8 @@ export const SearchBar: React.FC = () => {
           style={styles.input}
           placeholder="Search restaurants..."
           placeholderTextColor={colors.gray500}
+          value={value}
+          onChangeText={onChangeText}
         />
       </View>
     </View>

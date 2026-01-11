@@ -1,7 +1,7 @@
-export interface Restaurant {
-  id: string;
-  name: string;
-  rating: number;
-  location: string;
-  imageUrl: string;
+import type { Doc } from "@/convex/_generated/dataModel";
+
+export type Place = Doc<"places">;
+
+export interface PlaceWithRating extends Place {
+  averageRating: number | null;
 }

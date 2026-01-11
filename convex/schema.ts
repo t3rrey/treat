@@ -21,9 +21,12 @@ export default defineSchema({
       v.literal("restaurant"),
       v.literal("cafe"),
       v.literal("coffee_shop"),
+      v.literal("both"),
       v.literal("other")
     ),
     status: v.union(v.literal("want_to_try"), v.literal("visited")),
+    latitude: v.optional(v.number()),
+    longitude: v.optional(v.number()),
     priority: v.optional(v.number()),
     addedBy: v.id("users"),
     addedAt: v.number(),

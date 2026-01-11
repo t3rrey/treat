@@ -1,10 +1,29 @@
 {
   "expo": {
-    "scheme": "myapp",
+    "scheme": "treat",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location to find nearby coffee spots."
+        }
+      ]
     ],
     "name": "treat",
-    "slug": "treat"
+    "slug": "treat",
+    "icon": "./assets/images/icon.png",
+    "ios": {
+      "icon": "./assets/images/ios/icon-1024.png",
+      "bundleIdentifier": "com.treat.app"
+    },
+    "android": {
+      "icon": "./assets/images/icon.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#8A3DFF"
+      },
+      "package": "com.treat.app"
+    }
   }
 }

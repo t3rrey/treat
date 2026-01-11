@@ -7,7 +7,7 @@ export default function TabLayout() {
         <Label>Home</Label>
         <Icon sf="house.fill" drawable="custom_android_drawable" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="rate-food/step-1">
+      <NativeTabs.Trigger name="rate-food/index">
         <Label>Rate</Label>
         <Icon sf="plus.circle.fill" drawable="custom_android_drawable" />
       </NativeTabs.Trigger>

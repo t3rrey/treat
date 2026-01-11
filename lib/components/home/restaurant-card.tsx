@@ -1,39 +1,42 @@
 import { colors, spacing } from "@/lib/consts/theme";
-import { Restaurant } from "@/lib/types";
+import { PlaceWithRating } from "@/lib/types";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface RestaurantCardProps {
-  restaurant: Restaurant;
+interface PlaceCardProps {
+  place: PlaceWithRating;
+  onPress?: () => void;
 }
 
-export const RestaurantCard: React.FC<RestaurantCardProps> = ({
-  restaurant,
-}) => {
+export const PlaceCard: React.FC<PlaceCardProps> = ({ place, onPress }) => {
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.7}>
       <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: restaurant.imageUrl }}
-          style={styles.image}
-          resizeMode="cover"
-        />
+        {place.imageUrl && (
+          <Image
+            source={{ uri: place.imageUrl }}
+            style={styles.image}
+            resizeMode="cover"
+          />
+        )}
       </View>
 
       <View style={styles.content}>
         <View style={styles.header}>
           <Text style={styles.name} numberOfLines={1}>
-            {restaurant.name}
+            {place.name}
           </Text>
-          <View style={styles.ratingBadge}>
-            <MaterialIcons name="star" size={14} color={colors.primaryDark} />
-            <Text style={styles.ratingText}>{restaurant.rating}</Text>
-          </View>
+          {place.averageRating !== null && (
+            <View style={styles.ratingBadge}>
+              <MaterialIcons name="star" size={14} color={colors.primaryDark} />
+              <Text style={styles.ratingText}>{place.averageRating}</Text>
+            </View>
+          )}
         </View>
 
         <Text style={styles.location} numberOfLines={1}>
-          {restaurant.location}
+          {place.address}
         </Text>
       </View>
     </TouchableOpacity>
